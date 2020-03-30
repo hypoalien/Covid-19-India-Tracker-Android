@@ -85,12 +85,12 @@ public class HomeActivity extends AppCompatActivity {
 
             jsonArray = response.getJSONArray("statewise");
             for (int i = 0; i < jsonArray.length(); i++) {
-                state.add(jsonArray.getJSONObject(i).getString("state"));
-                active.add(jsonArray.getJSONObject(i).getString("active"));
-                confirmed.add(jsonArray.getJSONObject(i).getString("confirmed"));
-                recovered.add(jsonArray.getJSONObject(i).getString("recovered"));
-                death.add(jsonArray.getJSONObject(i).getString("deaths"));
-                delta.add(jsonArray.getJSONObject(i).getJSONObject("delta").getString("confirmed"));
+                state.add(i,jsonArray.getJSONObject(i).getString("state"));
+                active.add(i,jsonArray.getJSONObject(i).getString("active"));
+                confirmed.add(i,jsonArray.getJSONObject(i).getString("confirmed"));
+                recovered.add(i,jsonArray.getJSONObject(i).getString("recovered"));
+                death.add(i,jsonArray.getJSONObject(i).getString("deaths"));
+                delta.add(i,jsonArray.getJSONObject(i).getJSONObject("delta").getString("confirmed"));
             }
             SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
             editor.putInt("confirmed", Integer.parseInt(confirmed.get(0)));
