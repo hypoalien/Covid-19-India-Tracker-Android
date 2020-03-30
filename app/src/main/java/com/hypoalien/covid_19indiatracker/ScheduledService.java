@@ -1,6 +1,7 @@
 package com.hypoalien.covid_19indiatracker;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -100,10 +101,14 @@ public class ScheduledService extends Service{
     private void sendOnChannel1() {
         String title = newConfirmed+" Total Cases "+"(+ "+newDelta+" New )";
         String message = "Total Death Toll : "+newDeath;
+        Intent resultIntent = new Intent(this,HomeActivity.class);
+        PendingIntent resultPendingIntent=PendingIntent.getActivity(this,1,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID )
                 .setSmallIcon(R.drawable.logo_small)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setContentIntent(resultPendingIntent)
+                .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setVibrate(new long[] { 1000, 1000 })
                 .build();
