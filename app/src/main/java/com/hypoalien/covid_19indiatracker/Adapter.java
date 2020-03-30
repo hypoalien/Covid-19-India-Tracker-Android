@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,6 +110,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>{
                 try {
                     if(aStatus.getInt(aState.get(position))==2){
                         holder.subRecycler.setVisibility(View.GONE);
+                        Toast.makeText(activity,"NO CASES FOUND!",Toast.LENGTH_SHORT).show();
                     }
                     else if(aStatus.getInt(aState.get(position))==0){
                         holder.subRecycler.setVisibility(View.VISIBLE);
